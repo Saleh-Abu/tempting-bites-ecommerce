@@ -8,8 +8,59 @@ const {
   getAuth,
 } = require("firebase-admin/auth");
 
-const serviceAccount =
-  require("./firebase-service-account.json");
+
+/* =========================================
+   GET FIREBASE SERVICE ACCOUNT FROM ENV
+========================================= */
+
+const encodedServiceAccount =
+  process.env.FIREBASE_SERVICE_ACCOUNT_BASE64;
+
+
+/* =========================================
+   CHECK ENV VARIABLE
+========================================= */
+
+if (!encodedServiceAccount) {
+  throw new Error(
+    "FIREBASE_SERVICE_ACCOUNT_BASE64 is missing."
+  );
+}
+
+
+/* =========================================
+   DECODE BASE64 SERVICE ACCOUNT
+========================================= */
+
+let serviceAccount;
+
+try {
+  const decodedServiceAccount =
+    Buffer.from(
+      encodedServiceAccount,
+      "base64"
+    ).toString("utf8");
+
+  serviceAccount =
+    JSON.parse(
+      decodedServiceAccount
+    );
+
+  console.log(
+    "Firebase Admin Config: Loaded"
+  );
+
+} catch (error) {
+
+  console.error(
+    "Firebase Admin decode error:",
+    error.message
+  );
+
+  throw new Error(
+    "Invalid Firebase service account configuration."
+  );
+}
 
 
 /* =========================================
@@ -17,11 +68,13 @@ const serviceAccount =
 ========================================= */
 
 if (getApps().length === 0) {
+
   initializeApp({
     credential: cert(
       serviceAccount
     ),
   });
+
 }
 
 
