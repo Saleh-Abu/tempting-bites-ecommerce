@@ -5,6 +5,7 @@ import {
 } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import API_URL from "../config/api";
 
 import {
   Search,
@@ -13,8 +14,6 @@ import {
   ArrowRight,
 } from "lucide-react";
 
-const API_URL =
-  "http://localhost:5000/api/cakes";
 
 function SearchModal({
   isOpen,
@@ -43,10 +42,10 @@ function SearchModal({
         try {
           setLoading(true);
 
-          const response =
-            await axios.get(
-              API_URL
-            );
+         const response =
+  await axios.get(
+    `${API_URL}/api/cakes`
+  );
 
           setCakes(
             response.data

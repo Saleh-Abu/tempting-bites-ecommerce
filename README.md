@@ -6,6 +6,14 @@ The platform allows customers to browse cakes, customize their orders, authentic
 
 It also includes an admin dashboard for managing cakes, availability, pricing, customer orders, and order statuses.
 
+## 🌐 Live Demo
+
+### 🛍️ Frontend (Vercel)
+https://tempting-bites-ecommerce.vercel.app
+
+### ⚙️ Backend API (Render)
+https://tempting-bites-api.onrender.com
+
 ---
 
 ## ✨ Features

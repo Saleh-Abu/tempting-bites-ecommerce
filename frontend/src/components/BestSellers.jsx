@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import API_URL from "../config/api";
 
 import {
   ArrowRight,
@@ -10,8 +11,6 @@ import {
   ShoppingBag,
 } from "lucide-react";
 
-const API_URL =
-  "http://localhost:5000/api/cakes";
 
 function BestSellers() {
   const navigate = useNavigate();
@@ -38,9 +37,9 @@ function BestSellers() {
           setLoading(true);
 
           const response =
-            await axios.get(
-              API_URL
-            );
+  await axios.get(
+    `${API_URL}/api/cakes`
+  );
 
           setCakes(
             response.data

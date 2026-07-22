@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import API_URL from "../config/api";
 
 import {
   MapPin,
@@ -37,7 +38,7 @@ import {
 ========================================= */
 
 const ORDER_API =
-  "http://localhost:5000/api/orders";
+  `${API_URL}/api/orders`;
 
 const ALLOWED_PINCODE =
   "410206";

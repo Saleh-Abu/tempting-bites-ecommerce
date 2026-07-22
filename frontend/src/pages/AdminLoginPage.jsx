@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import API_URL from "../config/api";
 import {
   LockKeyhole,
   Mail,
@@ -39,11 +40,10 @@ function AdminLoginPage() {
       setLoading(true);
       setError("");
 
-      const response =
-        await axios.post(
-          "http://localhost:5000/api/admin/login",
-          form
-        );
+     await axios.post(
+  `${API_URL}/api/admin/login`,
+  form
+);
 
       if (response.data.success) {
         localStorage.setItem(

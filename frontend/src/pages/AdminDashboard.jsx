@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
+import API_URL from "../config/api";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -47,13 +48,13 @@ function AdminDashboard() {
       }
 
       const response = await axios.get(
-        "http://localhost:5000/api/orders",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+  `${API_URL}/api/orders`,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
 
       setOrders(response.data.orders || []);
     } catch (error) {
@@ -110,17 +111,17 @@ function AdminDashboard() {
         return;
       }
 
-      const response = await axios.patch(
-        `http://localhost:5000/api/orders/${orderId}/status`,
-        {
-          orderStatus: newStatus,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+     const response = await axios.patch(
+  `${API_URL}/api/orders/${orderId}/status`,
+  {
+    orderStatus: newStatus,
+  },
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
 
       if (response.data.success) {
         setOrders((currentOrders) =>

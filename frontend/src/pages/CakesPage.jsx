@@ -12,6 +12,7 @@ import {
 } from "react-router-dom";
 
 import axios from "axios";
+import API_URL from "../config/api";
 
 import {
   Search,
@@ -36,9 +37,6 @@ import CakeQuickView from "../components/CakeQuickView";
 /* =========================================
    API
 ========================================= */
-
-const API_URL =
-  "http://localhost:5000/api/cakes";
 
 
 /* =========================================
@@ -1299,9 +1297,9 @@ function CakesPage() {
 
 
         const response =
-          await axios.get(
-            API_URL
-          );
+  await axios.get(
+    `${API_URL}/api/cakes`
+  );
 
 
         const apiCakes =

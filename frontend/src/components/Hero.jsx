@@ -22,7 +22,7 @@ import {
   Sparkles,
 } from "lucide-react";
 
-const API_URL = "http://localhost:5000/api/cakes";
+import API_URL from "../config/api";
 
 /* =========================================
    TRANSPARENT HERO IMAGES
@@ -203,7 +203,7 @@ function Hero() {
   useEffect(() => {
     const fetchCakes = async () => {
       try {
-        const response = await axios.get(API_URL);
+       const response = await axios.get(`${API_URL}/api/cakes`);
 
         const allCakes = response.data.cakes || [];
 

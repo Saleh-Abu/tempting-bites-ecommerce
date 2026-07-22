@@ -5,6 +5,7 @@ import {
 } from "react";
 
 import axios from "axios";
+import API_URL from "../config/api";
 
 import {
   motion,
@@ -40,7 +41,7 @@ import {
 ========================================= */
 
 const MY_ORDERS_API =
-  "http://localhost:5000/api/orders/my-orders";
+  `${API_URL}/api/orders/my-orders`;
 
 
 /* =========================================

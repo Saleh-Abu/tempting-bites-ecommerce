@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import API_URL from "../config/api";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
@@ -23,8 +24,8 @@ import {
   IndianRupee,
 } from "lucide-react";
 
-const API_URL = "http://localhost:5000/api/cakes";
-const UPLOAD_URL = "http://localhost:5000/api/upload/cake";
+const CAKES_API = `${API_URL}/api/cakes`;
+const UPLOAD_URL = `${API_URL}/api/upload/cake`;
 
 const emptyForm = {
   name: "",
@@ -77,7 +78,7 @@ function AdminCakesPage() {
     try {
       setLoading(true);
 
-      const response = await axios.get(API_URL);
+      const response = await axios.get(CAKES_API);
 
       setCakes(response.data.cakes || []);
     } catch (error) {
@@ -442,7 +443,7 @@ function AdminCakesPage() {
 
       if (editingCake) {
         await axios.put(
-          `${API_URL}/${editingCake._id}`,
+          `${CAKES_API}/${editingCake._id}`,
 
           cakeData,
 
@@ -464,8 +465,7 @@ function AdminCakesPage() {
       ===================== */
 
       else {
-        await axios.post(
-          API_URL,
+        await axios.post(CAKES_API,
 
           cakeData,
 
@@ -543,8 +543,7 @@ function AdminCakesPage() {
 
         const response =
           await axios.patch(
-            `${API_URL}/${cake._id}/availability`,
-
+            `${CAKES_API}/${cake._id}/availability`,
             {
               isAvailable:
                 !cake.isAvailable,
@@ -611,7 +610,7 @@ function AdminCakesPage() {
         }
 
         await axios.delete(
-          `${API_URL}/${cake._id}`,
+         `${CAKES_API}/${cake._id}/availability`,
 
           {
             headers: {

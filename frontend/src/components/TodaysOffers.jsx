@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import API_URL from "../config/api";
 import { motion } from "framer-motion";
 
 import {
@@ -9,8 +10,6 @@ import {
   CakeSlice,
 } from "lucide-react";
 
-const API_URL =
-  "http://localhost:5000/api/cakes";
 
 function TodaysOffers() {
   const [cakes, setCakes] =
@@ -35,10 +34,10 @@ function TodaysOffers() {
         setLoading(true);
         setError("");
 
-        const response =
-          await axios.get(
-            API_URL
-          );
+       const response =
+  await axios.get(
+    `${API_URL}/api/cakes`
+  );
 
         const allCakes =
           response.data.cakes ||

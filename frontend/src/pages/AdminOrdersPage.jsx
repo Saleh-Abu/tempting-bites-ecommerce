@@ -4,6 +4,7 @@ import {
 } from "react";
 
 import axios from "axios";
+import API_URL from "../config/api";
 
 import {
   useNavigate,
@@ -35,7 +36,7 @@ import {
 ========================================= */
 
 const ORDERS_API =
-  "http://localhost:5000/api/orders";
+  `${API_URL}/api/orders`;
 
 
 /* =========================================
