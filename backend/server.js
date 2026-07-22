@@ -79,15 +79,28 @@ connectDB();
 // MIDDLEWARE
 // ==========================================
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://tempting-bites-ecommerce.vercel.app",
+];
+
 app.use(
   cors({
-    origin:
-      "http://localhost:5173",
+    origin: (origin, callback) => {
+      // Allow requests with no origin (e.g. Postman)
+      if (!origin) {
+        return callback(null, true);
+      }
 
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error("Not allowed by CORS"));
+    },
     credentials: true,
   })
 );
-
 
 // Parse JSON requests
 
